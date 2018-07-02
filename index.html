@@ -82,8 +82,11 @@
     </p>
   </div>
   <!-- JavaScript -->
+  <script src="./js/NoSleep.min.js"></script>
   <script>
+    var noSleep = new NoSleep();
     function GoInFullscreen() {
+      noSleep.enable();
       var element = document.body
       if (document.requestFullscreen)
         element.requestFullscreen();
@@ -95,7 +98,7 @@
         element.msRequestFullscreen();
     }
   </script>
-  <script async src="./js/script.js"></script>
+  <script src="./js/script.js"></script>
 </body>
 
 </html>

@@ -1,14 +1,10 @@
 var hash = window.location.search.substr(1);
-var inicio = Date.now()
+console.log(hash)
+var inicio = hash ? parseInt(hash) : Date.now()
 var inicioFracao = Date.now()
-var timer = hash ? parseInt(hash) * 60000 : 3600000
+var timer = 360000
 var umDecimo = timer / 10
 var umCentesimo = timer / 110
-var tempoDecorrido = Date.now() - inicio
-
-if (window.console) {
-  console.log('Hello Service Worker caching!');
-}
 
 function habilitar(nivel) {
   for (var i = 1; i <= 10; i++) {
@@ -47,23 +43,30 @@ function desabilitar(nivel, tempo, fracao) {
       elemento.className = "disable"
     }
   }
-  return quantidade * fracao + tempo;
+  console.log('tempo: ' + quantidade + " - " + fracao + " - " + tempo)
+  return (quantidade * fracao) + tempo;
 }
 
 var intervalo;
-noSleep.enable();
 
 function atualizar() {
   var tempo1 = desabilitar("a", inicio, umDecimo)
+  console.log('tempo1: ' + tempo1)
   desabilitar("b", tempo1, umCentesimo)
   if ((Date.now() - inicio - 200) > timer) {
     habilitarTudo()
     ligar()
-    noSleep.disable();
-    window.setTimeout(function () { window.clearInterval(intervalo) }, 1)
+    window.setTimeout(function(){window.clearInterval(intervalo)}, 1)
   }
 }
 
-intervalo = window.setInterval(function () {
-  atualizar()
+atualizar();
+
+window.setTimeout(function(){
+  window.location.href = '/timer/?' + inicio
+  window.setTimeout(window.stop, 0)
 }, umCentesimo)
+
+// intervalo = window.setInterval(function () {
+//  atualizar()
+// }, umCentesimo)
