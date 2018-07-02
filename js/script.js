@@ -1,6 +1,6 @@
 var inicio = Date.now()
 var inicioFracao = Date.now()
-var timer = 100000
+var timer = 3600000
 var umDecimo = timer / 10
 var umCentesimo = timer / 110
 var tempoDecorrido = Date.now() - inicio
