@@ -1,6 +1,6 @@
 var inicio = Date.now()
 var inicioFracao = Date.now()
-var timer = 5500
+var timer = 100000
 var umDecimo = timer / 10
 var umCentesimo = timer / 110
 var tempoDecorrido = Date.now() - inicio
@@ -21,7 +21,7 @@ function habilitar(nivel) {
 function ligar() {
   var elemento = document.body
   if (elemento) {
-    elemento.className = "ligado"
+    //elemento.className = "ligado"
   }
 
   elemento = document.getElementById("container")
